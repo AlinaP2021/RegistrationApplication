@@ -1,0 +1,33 @@
+table th, table td {
+    padding: 5px;
+}
+
+.message {
+    color: blue;
+}
+
+span {
+    color: blue;
+}
+
+td span {
+    font-size: 90%;
+    font-style: italic;
+    color: red;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+}
+
+.menu {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.menu a {
+    display: inline-block;
+    margin: 0px 5px;
+}

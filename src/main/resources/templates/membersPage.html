@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <th:block th:include="/_menu"></th:block>
+
+    <h2>Members</h2>
+
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>User First Name</th>
+            <th>User Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+        </tr>
+        <tr th:each ="member : ${members}">
+            <td th:text="${member.userName}"></td>
+            <td th:text="${member.userFirstName}"></td>
+            <td th:text="${member.userLastName}"></td>
+            <td th:utext="${member.email}"></td>
+            <td th:utext="${member.gender}"></td>
+        </tr>
+    </table>
+</body>
+</html>
