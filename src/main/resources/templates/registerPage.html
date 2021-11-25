@@ -3,66 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-    <title th:text="${title}"></title>
+    <title th:text="#{title.registerPage}"></title>
 </head>
 <body>
+    <div class="languages">
+        <a th:href="@{/users?lang=en}">EN</a>
+        &nbsp;|&nbsp;
+        <a th:href="@{/users?lang=fr}">FR</a>
+        &nbsp;|&nbsp;
+        <a th:href="@{/users?lang=ru}">RU</a>
+    </div>
+
     <th:block th:include="/_menu"></th:block>
 
-    <h2>Register</h2>
+    <h2 th:text="#{h.register}"></h2>
 
     <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="error"></div>
 
     <form th:action="@{/register}" th:object="${userForm}" method="POST">
         <table>
             <tr>
-                <td>User Name</td>
+                <td th:text="#{label.userName}"></td>
                 <td><input type="text" th:field="*{userName}"></td>
                 <td>
                     <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
                 </td>
             </tr>
             <tr>
-                <td>Password</td>
+                <td th:text="#{label.password}"></td>
                 <td><input type="password" th:field="*{password}"> </td>
                 <td>
                     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                 </td>
             </tr>
             <tr>
-                <td>Confirm</td>
+                <td th:text="#{label.confirm}"></td>
                 <td><input type="password" th:field="*{confirmPassword}"> </td>
                 <td>
                     <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
                 </td>
             </tr>
             <tr>
-                <td>Email</td>
+                <td th:text="#{label.email}"></td>
                 <td><input type="text" th:field="*{email}"> </td>
                 <td>
                     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                 </td>
             </tr>
             <tr>
-                <td>User First Name</td>
+                <td th:text="#{label.userFirstName}"></td>
                 <td><input type="text" th:field="*{userFirstName}"> </td>
                 <td>
                     <span th:if="${#fields.hasErrors('userFirstName')}" th:errors="*{userFirstName}"></span>
                 </td>
             </tr>
             <tr>
-                <td>User Last Name</td>
+                <td th:text="#{label.userLastName}"></td>
                 <td><input type="text" th:field="*{userLastName}"> </td>
                 <td>
                     <span th:if="${#fields.hasErrors('userLastName')}" th:errors="*{userLastName}"></span>
                 </td>
             </tr>
             <tr>
-                <td>Gender</td>
+                <td th:text="#{label.gender}"></td>
                 <td>
                     <select th:field="*{gender}">
                         <option value=""> -- </option>
-                        <option value="MALE">Male</option>
-                        <option value="FEMALE">Female</option>
+                        <option value="MALE" th:text="#{label.gender.male}"></option>
+                        <option value="FEMALE" th:text="#{label.gender.female}"></option>
                     </select>
                 </td>
                 <td>
@@ -70,7 +78,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Country</td>
+                <td th:text="#{label.country}"></td>
                 <td>
                     <select th:field="*{countryCode}">
                         <option value=""> -- </option>
@@ -86,7 +94,7 @@
                 <td></td>
                 <td>
                     <input type="submit" value="Submit">
-                    <a th:href="@{/members}">Cancel</a>
+                    <a th:href="@{/users}" th:text="#{label.submit.cancel}"></a>
                 </td>
                 <td></td>
             </tr>

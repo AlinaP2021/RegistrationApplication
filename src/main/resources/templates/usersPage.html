@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title th:text="#{title.usersPage}"></title>
+</head>
+<body>
+    <div class="languages">
+        <a th:href="@{/users?lang=en}">EN</a>
+        &nbsp;|&nbsp;
+        <a th:href="@{/users?lang=fr}">FR</a>
+        &nbsp;|&nbsp;
+        <a th:href="@{/users?lang=ru}">RU</a>
+    </div>
+
+    <th:block th:include="/_menu"></th:block>
+
+    <h2 th:text="#{h.users}"></h2>
+
+    <table>
+        <tr>
+            <th th:text="#{label.userName}"></th>
+            <th th:text="#{label.userFirstName}"></th>
+            <th th:text="#{label.userLastName}"></th>
+            <th th:text="#{label.email}"></th>
+            <th th:text="#{label.gender}"></th>
+        </tr>
+        <tr th:each ="user : ${users}">
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.userFirstName}"></td>
+            <td th:text="${user.userLastName}"></td>
+            <td th:utext="${user.email}"></td>
+            <td th:utext="${user.gender}"></td>
+        </tr>
+    </table>
+</body>
+</html>

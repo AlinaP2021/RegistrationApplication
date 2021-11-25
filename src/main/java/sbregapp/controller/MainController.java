@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -15,6 +14,7 @@ import sbregapp.model.Country;
 import sbregapp.model.User;
 import sbregapp.validator.UserValidator;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -41,11 +41,11 @@ public class MainController {
         }
     }
 
-    @GetMapping("/members")
-    public String viewMembers(Model model) {
+    @GetMapping("/users")
+    public String viewUsers(Model model) {
         List<User> list = userDAO.getUsers();
-        model.addAttribute("members", list);
-        return "membersPage";
+        model.addAttribute("users", list);
+        return "usersPage";
     }
 
     @GetMapping("/registerSuccessful")
@@ -64,7 +64,7 @@ public class MainController {
 
     @PostMapping("/register")
     public String saveRegister(Model model,
-                               @ModelAttribute("userForm") @Validated UserForm userForm,
+                               @ModelAttribute("userForm") @Valid UserForm userForm,
                                BindingResult result,
                                final RedirectAttributes redirectAttributes) {
 

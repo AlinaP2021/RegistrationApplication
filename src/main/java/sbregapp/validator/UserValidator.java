@@ -29,34 +29,34 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UserForm userForm = (UserForm) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty.userForm.userName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userFirstName", "NotEmpty.userForm.userFirstName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userLastName", "NotEmpty.userForm.userLastName");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.userForm.email");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.userForm.password");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "NotEmpty.userForm.confirmPassword");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gender", "NotEmpty.userForm.gender");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "countryCode", "NotEmpty.userForm.countryCode");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "notEmpty.userForm.userName");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userFirstName", "notEmpty.userForm.userFirstName");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userLastName", "notEmpty.userForm.userLastName");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "notEmpty.userForm.email");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "notEmpty.userForm.password");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "notEmpty.userForm.confirmPassword");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gender", "notEmpty.userForm.gender");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "countryCode", "notEmpty.userForm.countryCode");
 
         if (!emailValidator.isValid(userForm.getEmail())) {
-            errors.rejectValue("email", "Pattern.userForm.email");
+            errors.rejectValue("email", "pattern.userForm.email");
         } else if (userForm.getUserId() == null) {
             User dbUser = userDAO.findUserByEmail(userForm.getEmail());
             if (dbUser != null) {
-                errors.rejectValue("email", "Duplicate.userForm.email");
+                errors.rejectValue("email", "duplicate.userForm.email");
             }
         }
 
         if (!errors.hasFieldErrors("userName")) {
             User dbUser = userDAO.findUserByUserName(userForm.getUserName());
             if (dbUser != null) {
-                errors.rejectValue("userName", "Duplicate.userForm.userName");
+                errors.rejectValue("userName", "duplicate.userForm.userName");
             }
         }
 
         if (!errors.hasErrors()) {
             if (!userForm.getConfirmPassword().equals(userForm.getPassword())) {
-                errors.rejectValue("confirmPassword", "Match.userForm.confirmPassword");
+                errors.rejectValue("confirmPassword", "match.userForm.confirmPassword");
             }
         }
     }
